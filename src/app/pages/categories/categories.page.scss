@@ -1,0 +1,29 @@
+[page-categories-content]{
+	--background: url("../../../assets/images/background/bg-02.png") no-repeat center center / cover;
+}
+
+	ion-card {
+		--background: #fff;
+		opacity:0.8;
+	}
+
+	ion-content{
+		ion-button{
+			height: 100%;
+			div{
+				padding:7px 5px;
+				color: white;
+				bottom: 0px;
+				position: absolute;
+				width: 100%;
+				background: rgba(6, 110, 237, 0.282);
+				h4{
+					font-size: 22px;
+					margin: 0;
+				}
+			}
+		}
+	}
+
+
+

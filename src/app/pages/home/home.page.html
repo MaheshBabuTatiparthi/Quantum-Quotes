@@ -1,0 +1,93 @@
+
+<ion-header page-home-header class="page-home-header">
+	<ion-toolbar color="bluegray">
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>Quantum Quotes</ion-title>
+		<ion-buttons slot="end">
+			<ion-button [routerDirection]="'forward'" [routerLink]="['/quotes-bookmarks']">
+				<ion-icon name="heart"></ion-icon>
+				<ion-badge *ngIf="count_bookmarks!=0" color="danger">{{ count_bookmarks }}</ion-badge>
+			</ion-button>
+			<ion-button (click)="showPopover($event)">
+				<ion-icon name="ellipsis-vertical-outline"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content page-home-content class="page-home-content " >
+
+	<!-- banners -->
+	<ion-card *ngIf="dataBanners">
+		<ion-slides pager="true" *ngIf="dataBanners" >
+			<ion-slide *ngFor="let item of dataBanners | slice:0:5" [ngStyle]="{'background-image':'url(' + item.banner_image + ')','background-size':'cover','background-position':'center center'}" >
+			<div class="slide-container ratio-16x9">
+			</div>
+			</ion-slide>
+		</ion-slides>
+	</ion-card>
+	<!-- ./banners -->
+	
+	
+	<!-- categories -->
+
+	<ion-item class="ion-no-padding">
+		<ion-card-content>
+			<ion-card-title class="ion-no-padding"><ion-text color="bluegray">Categories</ion-text></ion-card-title>
+		</ion-card-content>
+			<ion-button slot="end" color="bluegray" [routerDirection]="'forward'" [routerLink]="['/','categories']"> Show All</ion-button>
+	</ion-item>
+
+	<ion-slides pager="false" *ngIf="dataCategories" [options]="{slidesPerView:2}" class="ion-margin-top ion-margin-bottom">
+		<ion-slide *ngFor="let item of dataCategories | slice:0:5" [ngStyle]="{'background':'transparent'}" >
+			<ion-card [ngStyle]="{'margin-top':0,'margin-bottom':0}" [routerDirection]="'forward'" [routerLink]="['/','quotes',item.id]">
+				<ion-card-content class="ratio-1x1" [ngStyle]="{'background-image':'url(' + item.category_image + ')','background-size':'cover','background-position':'center'}">
+				</ion-card-content>
+				<ion-card-content>
+					<ion-card-title><ion-text color="bluegray"> {{item.category_name}} </ion-text></ion-card-title>
+				</ion-card-content>
+			</ion-card>
+		</ion-slide>
+	</ion-slides>
+	<!-- ./categories -->
+	
+	
+	<!-- quotes -->
+
+	<ion-item class="ion-no-padding ion-margin-top">
+		<ion-card-content>
+			<ion-card-title class="ion-no-padding"><ion-text color="bluegray">Latest Quotes</ion-text></ion-card-title>
+		</ion-card-content>
+			<ion-button slot="end" color="bluegray" [routerDirection]="'forward'" [routerLink]="['/','quotes']">View All</ion-button>
+	</ion-item>
+
+	<ion-card *ngFor="let item of dataQuotes | slice:0:5 ">
+		<img *ngIf="item && item.quote_image" [src]="item.quote_image" />
+		<ion-card-header>
+			<ion-card-title [innerHTML]="item.quote"></ion-card-title>
+			<ion-card-subtitle>⚊ {{item.quote_author }}</ion-card-subtitle>
+		</ion-card-header>
+		<ion-grid class="ion-no-padding" [fixed]>        
+			<ion-row class="ion-padding-end">
+				  <ion-col size="3">
+					<div><ion-button color="dark" fill="clear" (click)="saveBookmark(item.id,item)"><ion-icon name="heart"></ion-icon>Love</ion-button></div>
+				  </ion-col>
+				  <ion-col size="3">
+					<div><ion-button color="dark" fill="clear"  *ngIf="item && item.quote" copyToClipboard text="{{ item.quote }}"><ion-icon name="copy"></ion-icon>Copy</ion-button></div>
+				  </ion-col>
+				  <ion-col size="3">
+					<div><ion-button color="dark" fill="clear" *ngIf="item && item.quote_image" imageZoom image="{{ item.quote_image }}"><ion-icon name="eye"></ion-icon>View</ion-button></div>
+				  </ion-col>
+				  <ion-col size="3">
+					<div><ion-button color="dark" fill="clear" xSocialSharing message="{{ item.quote }}" file="{{ item.quote_image }}" title="Pick an app"><ion-icon name="share-social-sharp"></ion-icon>Share</ion-button></div>
+				  </ion-col>
+				</ion-row>
+			  </ion-grid>
+	</ion-card>
+	<!-- ./quotes -->
+	
+
+</ion-content>

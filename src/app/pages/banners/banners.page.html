@@ -1,0 +1,39 @@
+
+<ion-header page-banners-header class="page-banners-header">
+	<ion-toolbar color="bluegray">
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>Banners</ion-title>
+		<!-- <ion-buttons slot="end">
+			<ion-button (click)="showPopover($event)"><ion-icon name="settings"></ion-icon></ion-button>
+		</ion-buttons> -->
+	</ion-toolbar>
+	<ion-toolbar app-searchbar color="bluegray">
+		<ion-searchbar  [(ngModel)]="filterQuery" (ionInput)="filterItems($event)" ></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content page-banners-content class="page-banners-content " >
+	
+	<ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+	
+	<ion-card *ngIf="filterDataBanners.length == 0">
+		<ion-card-content>
+			No item!
+		</ion-card-content>
+	</ion-card>
+	
+	<ion-card *ngFor="let item of filterDataBanners" >
+		<img *ngIf="item && item.banner_image" [src]="item.banner_image" />
+	</ion-card>
+	
+	<ion-infinite-scroll threshold="100px" id="infinite-scroll" (ionInfinite)="loadMore($event)">
+		<ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data..."></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
+</ion-content>

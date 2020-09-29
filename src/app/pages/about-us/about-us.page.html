@@ -1,0 +1,74 @@
+
+<ion-header page-about-us-header class="page-about-us-header">
+	<ion-toolbar color="bluegray">
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>About App</ion-title>
+		<!-- <ion-buttons slot="end">
+			<ion-button (click)="showPopover($event)"><ion-icon name="settings"></ion-icon></ion-button>
+		</ion-buttons> -->
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content page-about-us-content class="page-about-us-content " >
+<ion-card>
+	<ion-card-content>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					App Name
+				</ion-col>
+				<ion-col>
+					<strong>{{ AppName }}</strong>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					Package Name
+				</ion-col>
+				<ion-col>
+					<strong>{{ PackageName }}</strong>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					Version Code
+				</ion-col>
+				<ion-col>
+					<strong>{{ VersionCode }}</strong>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					Version Number
+				</ion-col>
+				<ion-col>
+					<strong>{{ VersionNumber }}</strong>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card-content>
+</ion-card>
+
+	<ion-card>
+		<ion-card-content>
+			<p>Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate and disclose and make use of personal information. The following outlines our privacy policy.</p>
+			<p>We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained</p>
+			
+				<ion-list lines="none">
+					<ion-item appBrowser url="https://godigitally.co.in" >
+						<ion-icon color="danger" name="globe" item-start></ion-icon>
+						<ion-label> Go Digitally</ion-label>
+					</ion-item>
+					<ion-item mailApp emailAddress="info@godigitally.co.in" >
+						<ion-icon color="secondary" name="at-circle" item-start></ion-icon>
+						<ion-label> info@godigitally.co.in</ion-label>
+					</ion-item>
+				</ion-list>
+
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>

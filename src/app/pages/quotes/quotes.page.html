@@ -1,0 +1,66 @@
+
+
+<!-- custom code -->
+
+	<ion-header page-product-detail-header class="page-product-detail-header">
+		<ion-toolbar color="bluegray">
+			<ion-buttons slot="start">
+				<ion-menu-button></ion-menu-button>
+			</ion-buttons>
+			<ion-title>Quantum Quotes</ion-title>
+			<ion-buttons slot="end">
+				<ion-button [routerDirection]="'forward'" [routerLink]="['/quotes-bookmarks']">
+					<ion-icon name="heart"></ion-icon>
+					<ion-badge *ngIf="count_bookmarks!=0" color="danger">{{ count_bookmarks }}</ion-badge>
+				</ion-button>
+				<!-- <ion-button (click)="showPopover($event)">
+					<ion-icon name="ellipsis-vertical-outline"></ion-icon>
+				</ion-button> -->
+			</ion-buttons>
+		</ion-toolbar>
+	</ion-header>
+
+<!-- ./custom code -->
+
+
+<ion-content page-quotes-content class="page-quotes-content " >
+	
+	<ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+	
+	<ion-card *ngIf="filterDataQuotes.length == 0">
+		<ion-card-content>
+			No item!
+		</ion-card-content>
+	</ion-card>
+	
+	<ion-card *ngFor="let item of filterDataQuotes" >
+		<img *ngIf="item && item.quote_image" [src]="item.quote_image" />
+		<ion-card-header>
+			<ion-card-title [innerHTML]="item.quote"></ion-card-title>
+			<ion-card-subtitle>⚊ {{item.quote_author }}</ion-card-subtitle>
+		</ion-card-header>
+		<ion-grid class="ion-no-padding" [fixed]>        
+			<ion-row class="ion-padding-end">
+				  <ion-col size="3">
+					<div><ion-button color="dark" fill="clear" (click)="saveBookmark(item.id,item)"><ion-icon name="heart"></ion-icon>Love</ion-button></div>
+				  </ion-col>
+				  <ion-col size="3">
+					<div><ion-button color="dark" fill="clear"  *ngIf="item && item.quote" copyToClipboard text="{{ item.quote }}"><ion-icon name="copy"></ion-icon>Copy</ion-button></div>
+				  </ion-col>
+				  <ion-col size="3">
+					<div><ion-button color="dark" fill="clear" *ngIf="item && item.quote_image" imageZoom image="{{ item.quote_image }}"><ion-icon name="eye"></ion-icon>View</ion-button></div>
+				  </ion-col>
+				  <ion-col size="3">
+					<div><ion-button color="dark" fill="clear" xSocialSharing message="{{ item.quote }}" file="{{ item.quote_image }}" title="Pick an app"><ion-icon name="share-social-sharp"></ion-icon>Share</ion-button></div>
+				  </ion-col>
+				</ion-row>
+			  </ion-grid>
+	</ion-card>
+	
+	<ion-infinite-scroll threshold="100px" id="infinite-scroll" (ionInfinite)="loadMore($event)">
+		<ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data..."></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
+</ion-content>

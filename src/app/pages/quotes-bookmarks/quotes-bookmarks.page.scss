@@ -1,0 +1,54 @@
+[page-quotes-bookmarks-content]{
+	--background: url("../../../assets/images/background/bg-02.png") no-repeat center center / cover;
+}
+
+	.empty-bookmarks-container{height: 100%;}
+	.empty-bookmarks-wrapper{text-align: center;padding-top: 50%;font-size: 72px;}
+	.empty-bookmarks-wrapper h3{font-variant-caps: petite-caps;font-size: 18px;}
+
+	[page-quotes-bookmarks-content]{
+		--background: url("../../../assets/images/background/bg-02.png") no-repeat center center / cover;
+	}
+	
+		.empty-bookmarks-container{height: 100%;}
+		.empty-bookmarks-wrapper{text-align: center;padding-top: 50%;font-size: 72px;}
+		.empty-bookmarks-wrapper h3{font-variant-caps: petite-caps;font-size: 18px;}
+	
+	
+	ion-content{
+		ion-card{
+			ion-card-header{
+				position: absolute;
+				top: 40%;
+				left: 0;
+				width: 100%;
+				transform: translateY(-50%);
+				text-align: center;
+				ion-card-title {
+					font-size: 1.8em;
+					//font-weight: bold;
+					color:white;
+					text-shadow: 2px 2px 8px #263238;
+				}
+				ion-card-subtitle{
+					//font-weight: bold;
+					color:white;
+					text-align: right;
+					padding-right: 20px;
+				}
+			}
+		}
+	}
+	
+	img {
+		-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+		filter:saturate(2);
+		object-fit: cover;
+		-webkit-mask-image: radial-gradient(circle at 80% 70%, rgba(255,255,255,.1) 0%, rgba(0,0,0,1) 40%);
+		mask-image: radial-gradient(circle at 80% 70%, rgba(255,255,255,.1) 0%, rgba(0,0,0,1) 40%);
+		}
+	
+	
+	
+	
+

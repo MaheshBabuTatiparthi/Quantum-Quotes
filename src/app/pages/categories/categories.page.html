@@ -1,0 +1,51 @@
+
+<ion-header page-categories-header class="page-categories-header">
+	<ion-toolbar color="bluegray">
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>Categories</ion-title>
+		<ion-buttons slot="end">
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content page-categories-content class="page-categories-content " >
+<ion-content ion-no-padding>
+	
+	<ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+	
+	<ion-card *ngIf="filterDataCategories.length == 0">
+		<ion-card-content>
+			No item!
+		</ion-card-content>
+	</ion-card>
+	
+
+		<ion-grid class="ion-no-padding">
+			<!-- single row contain 2 columns of equal lenght due to size=6  -->
+			<ion-row class="ion-no-padding">
+				<ion-col *ngFor="let item of filterDataCategories" size="6" class="ion-no-padding">
+					<ion-button [routerDirection]="'forward'" [routerLink]="['/','quotes',item.id]" fill="clear" class="ion-no-padding">
+						<img *ngIf="item && item.category_image" [src]="item.category_image" />
+						<div class="overlay-text ion-no-padding">
+							<h4>{{item.category_name}}</h4>
+							<p>{{item.category_name}} Category</p>
+						</div>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+	
+	<ion-infinite-scroll threshold="100px" id="infinite-scroll" (ionInfinite)="loadMore($event)">
+		<ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data..."></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
+</ion-content>
+
+</ion-content>

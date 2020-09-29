@@ -1,0 +1,7 @@
+{
+  "name": "Quantum Quotes",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

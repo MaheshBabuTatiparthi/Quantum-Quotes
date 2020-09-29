@@ -1,0 +1,6 @@
+<ion-list>
+	<!-- <ion-item button  color="light"  ><ion-text color="dark">{{"Dark Mode"}}</ion-text><ion-toggle [(ngModel)]="isDarkMode" (ionChange)="darkMode($event)" slot="end"></ion-toggle></ion-item> -->
+	<ion-item button  color="light"  (click)="dismissPopover()" [routerDirection]="'forward'" [routerLink]="'/privacy-policy'"><ion-text color="dark">{{"Privacy Policy"}}</ion-text></ion-item>
+	<ion-item button  color="light"  (click)="dismissPopover()" [routerDirection]="'forward'" [routerLink]="'/about-us'"><ion-text color="dark">{{"About App"}}</ion-text></ion-item>
+	<ion-item button  color="light"  (click)="exitApp()" ><ion-text color="dark">{{"Exit"}}</ion-text></ion-item>
+</ion-list>
